@@ -69,6 +69,7 @@ define([
                     comparative_genomics : 'Comparative Genomics',
                     expression : 'Expression',
                     communities : 'Communities',
+                    sequence : 'Sequence Alignment & Search',
                     util : 'Utilities'
                 };
 
@@ -453,6 +454,12 @@ define([
                     })
                     .then(function (methods) {
                         for(var k=0; k<methods.length; k++) {
+
+                            if(methods[k].loading_error) {
+                                console.log('Error in spec, will not be loaded:')
+                                console.log(methods[k])
+                                continue;
+                            }
 
                             // logic to hide/show certain categories
                             if(self.util.skipApp(methods[k].categories)) continue;
